@@ -33,3 +33,16 @@ print("Number of Job titles:", len(sorted((df_processed["Job Title"].unique())))
 # Print the job titles
 print("Job titles:", sorted((df_processed["Job Title"].unique())))
 print()
+
+# Combine all job titles into a single string
+text = " ".join(df_processed["Job Title"])
+
+# Split the combined text into individual words
+words = text.split()
+
+from collections import Counter
+
+# Count the frequency of each word using Counter
+word_count = Counter(words)
+print("Words of Job Titles:", word_count)
+print()
