@@ -36,14 +36,14 @@ from collections import Counter
 word_count = Counter(words)
 
 # Filter the word counts to include only words with more than 2 letters
-# or uppercase words, and words that appear at least 85 times
+# or uppercase words, and words that appear at least 15 times
 filtered_dict = {
     word: count
     for word, count in word_count.items()
     if (len(word) > 2 or word.isupper()) and count >= 15
 }
 
-# Convert the keys (filtered words) from the dictionary into a list
+# Convert the filtered words from the dictionary into a list
 filtered_words = list(filtered_dict.keys())
 
 # Add a new column for each filtered word
@@ -56,3 +56,9 @@ for word in filtered_words:
         )  # Use regex to match whole words (case-insensitive)
         .astype(int)  # Convert the boolean result to an integer (1 or 0)
     )
+
+# Keep only the numerical columns in the DataFrame
+df_processed = df_processed.select_dtypes(include="number")
+
+# Save the preprocessed DataFrame to a new CSV file
+df_processed.to_csv("../../data/processed/processed.csv", index=False)
