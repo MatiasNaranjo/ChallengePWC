@@ -2,23 +2,16 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
-df_model = pd.read_csv("../data/processed/processed.csv")
+from utils.data_processing import load_preprocess_train_data
 
-# Split features (X) and target (y)
-X = df_model.drop(columns=["Salary", "id"])  # Select all columns except Salary and id
-y = df_model["Salary"].values
+# Define parameters
+file_path = "../data/processed/processed.csv"
+target_column = "Salary"
+drop_columns = ["id"]
 
-# Normalize the features
-from sklearn.preprocessing import StandardScaler
-
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
-# Split the data into training and testing sets
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled, y, test_size=0.2, random_state=42
+# Call the function
+X_train, X_test, y_train, y_test = load_preprocess_train_data(
+    file_path=file_path, target_column=target_column, drop_columns=drop_columns
 )
 
 from tensorflow.keras.layers import Dense, Input
