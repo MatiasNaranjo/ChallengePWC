@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Load the raw data from CSV files into DataFrames
-df_people = pd.read_csv("../../data/raw/people.csv")
-df_salary = pd.read_csv("../../data/raw/salary.csv")
+df_people = pd.read_csv("../data/raw/people.csv")
+df_salary = pd.read_csv("../data/raw/salary.csv")
 
 # Combine the dataframes by merging
 df_combined = pd.merge(df_people, df_salary, on="id")
@@ -61,4 +61,4 @@ for word in filtered_words:
 df_processed = df_processed.select_dtypes(include="number")
 
 # Save the preprocessed DataFrame to a new CSV file
-df_processed.to_csv("../../data/processed/processed.csv", index=False)
+df_processed.to_csv("../data/processed/processed.csv", index=False)

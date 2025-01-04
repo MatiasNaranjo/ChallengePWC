@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
-df_model = pd.read_csv("../../data/processed/processed.csv")
+df_model = pd.read_csv("../data/processed/processed.csv")
 
 # Split features (X) and target (y)
 X = df_model.drop(columns=["Salary", "id"])  # Select all columns except Salary and id
@@ -60,4 +60,4 @@ history = model.fit(
 )
 
 # Save the model
-model.save("../../models/final/tf_model.keras")
+model.save("../models/final/tf_model.keras")
