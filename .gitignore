@@ -1,2 +1,7 @@
 .venv/
 data/processed/
+models/
+src/training/__pycache__/
+src/data/__pycache__/
+src/inference/__pycache__/
+src/utils/__pycache__/
