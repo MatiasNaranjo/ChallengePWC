@@ -1,14 +1,13 @@
 import pandas as pd
 
+from src.utils.data_processing import merging_csv
+
 
 def preprocess_multiple_datasets(
     dataset_paths, output_csv, merge_on="id", word_min_length=2, word_min_count=15
 ):
     # Load the raw data from CSV files into DataFrames
-    df_combined = pd.read_csv(dataset_paths[0])
-    for path in dataset_paths[1:]:
-        df_to_merge = pd.read_csv(path)
-        df_combined = pd.merge(df_combined, df_to_merge, on=merge_on)
+    df_combined = merging_csv(dataset_paths, merge_on="id")
 
     # Remove rows with missing values
     df_processed = df_combined.dropna().copy()

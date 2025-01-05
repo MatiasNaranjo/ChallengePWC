@@ -1,6 +1,22 @@
 import pandas as pd
 
 
+def merging_csv(dataset_paths, merge_on="id"):
+    # Read the first dataset from the list of paths into a DataFrame
+    df_combined = pd.read_csv(dataset_paths[0])
+
+    # Loop through the rest of the dataset paths
+    for path in dataset_paths[1:]:
+        # Read the next dataset to merge
+        df_to_merge = pd.read_csv(path)
+
+        # Merge the current dataset with the previously merged DataFrame on the specified column
+        df_combined = pd.merge(df_combined, df_to_merge, on=merge_on)
+
+    # Return the combined DataFrame after all merges
+    return df_combined
+
+
 def load_preprocess_train_data(
     file_path, target_column, drop_columns=None, test_size=0.2, random_state=42
 ):
