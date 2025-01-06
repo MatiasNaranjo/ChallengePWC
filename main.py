@@ -6,6 +6,7 @@ print(os.getcwd())
 os.chdir(r"d:\matna\Documents\Escritorio\ChallengePWC")
 
 from src.data.preprocess_data import preprocess_multiple_datasets
+from src.inference.explain_features_shap import analyze_feature_importance_shap
 from src.inference.inference import results_multiple_models
 from src.training.train_dummy import train_dummy_model
 from src.training.train_tf import train_model_tf
@@ -64,3 +65,8 @@ models = [(model_dummy, "dummy"), (model_tf, "tf")]
 
 # Results
 df_result = results_multiple_models(models, X_train, X_test, y_train, y_test)
+
+# Analize features importance
+shap_values = analyze_feature_importance_shap(
+    model_tf, X_test, df_processed, target_column="Salary", non_feature_column="id"
+)
