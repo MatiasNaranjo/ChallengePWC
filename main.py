@@ -5,6 +5,7 @@ print(os.getcwd())
 # Change the working directory to the specified path
 os.chdir(r"d:\matna\Documents\Escritorio\ChallengePWC")
 
+from src.data.explore_data import analize_data
 from src.data.preprocess_data import preprocess_multiple_datasets
 from src.inference.explain_features_shap import analyze_feature_importance_shap
 from src.inference.inference import results_multiple_models
